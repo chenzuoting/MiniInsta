@@ -1,0 +1,8 @@
+1. pipenv install django
+2. pipenv shell
+3. django-admin startproject MiniInsta .
+4. python manage.py runserver
+
+
+1. git init
+2. git status
