@@ -1,8 +1,20 @@
+Setup
 1. pipenv install django
 2. pipenv shell
 3. django-admin startproject MiniInsta .
 4. python manage.py runserver
 
+Create new app
+1. python manage.py startapp Insta
+2. Add app to settings.py
 
+Add static page:
+1. Update templates/ path in setting
+2. Create view, html, url
+
+Git
 1. git init
 2. git status
+3. git add -A
+4. git commit -m "Initial commit"
+5. git log/Users/mcfy/Projects/djangoWork/MiniInsta/steps.txt
