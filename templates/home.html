@@ -1,7 +1,12 @@
 <div>
+    <a href={% url 'post_create' %}>Make Post</a>
+</div>
+<div>
     {% for post in object_list%}
         <p> {{post.author.username}} posts: </p>
         <p> {{post.title}} </p>
-        <img src="/{{post.image}}">
+        <a href={% url 'post_detail' post.id %}>
+            <img src="/{{post.image}}">
+        </a>
     {% endfor %}
 </div>

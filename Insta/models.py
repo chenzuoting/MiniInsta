@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from imagekit.models import ProcessedImageField
 
 # Create your models here.
@@ -29,3 +30,6 @@ class Post (models.Model):
         blank=True,
         null=True,
     )
+
+    def get_absolute_url(self): #called when new post saved
+        return reverse("post_detail", args=[str(self.id)]) #get url based on name

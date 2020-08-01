@@ -1,0 +1,9 @@
+<div>
+    <a href={% url 'post_update' object.id %}>Update Post</a>
+    <a href={% url 'post_delete' object.id %}>Delete Post</a>
+</div>
+<div>
+    <p> {{object.author.username}} posts: </p>
+    <p> {{object.title}} </p>
+    <img src="/{{object.image}}">
+</div>

@@ -1,0 +1,11 @@
+<h1>Update Post</h1>
+
+{% comment %} 
+action: url that receive data
+method: http method 
+{% endcomment %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>

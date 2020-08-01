@@ -18,3 +18,4 @@ Git
 3. git add -A
 4. git commit -m "Initial commit"
 5. git log
+6. git push -u origin master
