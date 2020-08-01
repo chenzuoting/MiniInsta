@@ -1,0 +1,7 @@
+<div>
+    {% for post in object_list%}
+        <p> {{post.author.username}} posts: </p>
+        <p> {{post.title}} </p>
+        <img src="/{{post.image}}">
+    {% endfor %}
+</div>

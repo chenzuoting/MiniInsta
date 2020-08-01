@@ -17,4 +17,4 @@ Git
 2. git status
 3. git add -A
 4. git commit -m "Initial commit"
-5. git log/Users/mcfy/Projects/djangoWork/MiniInsta/steps.txt
+5. git log
