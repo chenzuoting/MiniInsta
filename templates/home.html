@@ -1,6 +1,5 @@
-<div>
-    <a href={% url 'post_create' %}>Make Post</a>
-</div>
+{% include 'header.html' %}
+
 <div>
     {% for post in object_list%}
         <p> {{post.author.username}} posts: </p>
