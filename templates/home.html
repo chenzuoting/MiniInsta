@@ -2,7 +2,7 @@
 
 <div>
     {% for post in object_list%}
-        <p> {{post.author.username}} posts: </p>
+        <p> <a href={% url 'user_profile' post.author.id %}> {{post.author.username}} </a> posts: </p>
         <p> {{post.title}} </p>
         <a href={% url 'post_detail' post.id %}>
             <img src="/{{post.image}}">

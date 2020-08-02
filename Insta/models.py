@@ -13,6 +13,9 @@ class InstaUser (AbstractUser):
         null=True,
         blank=True,
         )
+
+    def get_absolute_url(self): #called when new post saved
+        return reverse("user_profile", args=[str(self.id)]) #get url based on name
     
 class Post (models.Model):
     author = models.ForeignKey(

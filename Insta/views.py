@@ -53,4 +53,13 @@ class SignUp(CreateView):
     template_name = 'signup.html'
     success_url = reverse_lazy("login")
 
-    
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = InstaUser
+    template_name = 'user_profile.html'
+    login_url = 'login'
+
+class EditProfileView(LoginRequiredMixin, UpdateView):
+    model = InstaUser
+    template_name = 'edit_profile.html'
+    fields = ['username', 'profile_pic']
+    login_url = 'login'

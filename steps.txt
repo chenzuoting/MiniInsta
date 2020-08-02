@@ -12,6 +12,12 @@ Add static page:
 1. Update templates/ path in setting
 2. Create view, html, url
 
+Login/logout/signup:
+1. django.contrib.auth
+2. View & url are ready for login, only need to write a html
+3. View & url are ready for logout, no html needed
+4. View & url & html should be created for signup
+
 Git
 1. git init
 2. git status
