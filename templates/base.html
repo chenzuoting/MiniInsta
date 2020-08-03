@@ -1,0 +1,56 @@
+<html>
+    {% load static %}
+    {% comment %} 
+    Head includes metadata
+    Metadata defines the language used, encoding, etc. 
+    {% endcomment %}
+    <head>
+        {% comment %} 
+        Encoding 
+        {% endcomment %}
+        <meta charset="utf-8">
+        {% comment %} 
+        View option in cellphone 
+        {% endcomment %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% comment %} 
+        Title shown in the browser 
+        {% endcomment %}
+        <title>Mini Insta</title>
+        {% comment %} 
+        Page style is defined in css files
+        Link this html file to css files
+        Static point to the STATICFILES_DIRS in settings.py
+        To use static, we must "load static" first
+        <link href="{% static 'css/mystyle.css' %}" rel="stylesheet"> 
+        {% endcomment %}
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/font-awesome-4.6.3/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        {% include 'header.html' %}
+
+        {% comment %} 
+        Put it in a container so that there is a costumized margin 
+        {% endcomment %}
+        <div class="content-wrapper">
+            <div class="container">
+                {% comment %} 
+                Find the block named content and place it here 
+                {% endcomment %}
+                {% block content %}
+                {% endblock content%}
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ajax-csrf-auth.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+        {% block extrascript %}
+        {% endblock %}
+
+    </body>
+</html>

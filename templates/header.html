@@ -1,3 +1,4 @@
+{% comment %} 
 <ul>
     <div>
         {% if request.user.is_authenticated %}
@@ -13,4 +14,38 @@
         <a href={% url 'post_create' %}>Make Post</a>
         <a href={% url 'helloworld' %}>Profile</a>
     </div>
-</ul>
+</ul> 
+{% endcomment %}
+
+{% comment %} {% load custom_tags %} {% endcomment %}
+
+<div class="navbar navbar-default navbar-fixed-top" id="main-nav">
+    <div class="container desktop">
+        <div class="navbar-header">
+            <a href="{% url 'home' %}" class="navbar-brand">Mini Insta</a>
+        </div>
+
+        <div id="navbar-main">
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li>
+                      <a href="{% url 'home' %}">
+                        <i class="fa fa-home {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <li><a href="{% url 'helloworld' %}"><i class="fa fa-search active" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'post_create' %}"><i class="fa fa-plus active" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'user_profile' user.id %}"><i class="fa fa-user active" aria-hidden="true"></i></a></li>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out active" aria-hidden="true"></i></a></li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'signup' %}">Signup</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

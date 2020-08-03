@@ -1,4 +1,8 @@
-{% include 'header.html' %}
+{% extends "base.html" %}
+
+{% comment %} {% load custom_tags %} {% endcomment %}
+
+{% block content %}
 
 <h1>Update Post</h1>
 
@@ -11,3 +15,5 @@ method: http method
     {{ form.as_p }}
     <button type="submit">Update</button>
 </form>
+
+{% endblock content %}

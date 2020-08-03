@@ -1,4 +1,8 @@
-{% include 'header.html' %}
+{% extends "base.html" %}
+
+{% comment %} {% load custom_tags %} {% endcomment %}
+
+{% comment %} {% block content %}
 
 <div>
     {% for post in object_list%}
@@ -9,3 +13,52 @@
         </a>
     {% endfor %}
 </div>
+
+{% endblock content %} {% endcomment %}
+
+{% block content %}
+
+<div class="cards-listing">
+    {% for post in object_list %}
+        <div class="row">
+            <div class="card view-update {{ post.pk }}">
+                {% comment %} Show post author {% endcomment %}
+                <div class="card__panel-head">
+                    <div class="poster__info">
+                        <a href="{% url 'user_profile' post.author.id %}" class="poster__name">
+                            {% if post.author.profile_pic %}
+                                <img class="poster__profilepic" src="/{{ post.author.profile_pic }}">
+                            {% endif %}
+                            {{ post.author.username }}
+                        </a>
+                    </div>
+                </div> 
+
+                {% comment %} Show post author {% endcomment %}
+                <a href="{% url 'post_detail' post.pk %}">
+                    <img class="card__main-image" src="/{{ post.image }}">
+                </a>
+
+                {% comment %} <div class="card__panel-body">
+                    <div class="likes">
+                        {% if post.get_like_count %}
+                            {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %}
+                        {% endif %}
+                    </div>
+                    <section class="input-row">
+                        <!-- fa: fontawsome library -->
+                        <!-- has_user_liked_post: a self defined template language with arguements post and user -->
+                        <!-- submit-like: for js to find this icon -->
+                        <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
+                        <!-- use as i's sibling to save some info -->
+                        <div class="hidden-data {{ post.pk }}" style="display: none;">
+                            <span class="post-pk">{{ post.pk }}</span>
+                        </div>
+                    </section> 
+                </div> {% endcomment %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

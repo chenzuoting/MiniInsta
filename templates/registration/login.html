@@ -1,4 +1,8 @@
-{% include 'header.html' %}
+{% extends "base.html" %}
+
+{% comment %} {% load custom_tags %} {% endcomment %}
+
+{% block content %}
 
 <h1>Login</h1>
 
@@ -7,3 +11,5 @@
     {{ form.as_p }}
     <button type="submit">Login</button>>
 </form>>
+
+{% endblock content %}
