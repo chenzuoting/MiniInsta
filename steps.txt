@@ -18,6 +18,12 @@ Login/logout/signup:
 3. View & url are ready for logout, no html needed
 4. View & url & html should be created for signup
 
+Like toggle
+1. Display static heart on html with check function on custom_tags
+2. Update index.js, monitoring click and update html
+3. Update function based view for db update
+4. Update url
+
 Git
 1. git init
 2. git status

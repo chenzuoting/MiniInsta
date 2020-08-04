@@ -16,11 +16,11 @@ function create_like(success_cb, error_cb) {
     var post_pk = $(this).siblings('.hidden-data').find('.post-pk').text();
     console.log(post_pk);
 
-    // call ajax to send a request
+    // call ajax to send a request to update db
     $.ajax({
         type: "POST",
         // send request to below url
-        url: '/insta/like',
+        url: '/like/',
         // data transfered: json format, like a map: key: "post_pk", value: post_pk
         data: {
             post_pk: post_pk
@@ -33,7 +33,7 @@ function create_like(success_cb, error_cb) {
 function like_update_view(data) {
     console.log(data);
 
-    // toggle heart
+    // toggle heart on html
     var $hiddenData = $('.hidden-data.' + data.post_pk);
     if (data.result) {
       $hiddenData.siblings('.submit-like').removeClass('fa-heart-o').addClass('fa-heart');
@@ -41,7 +41,7 @@ function like_update_view(data) {
       $hiddenData.siblings('.submit-like').removeClass('fa-heart').addClass('fa-heart-o');
     }
   
-    // update like count
+    // update like count on html
     var difference = data.result ? 1 : -1;
     var $post = $('.view-update.' + data.post_pk);
     var $likes = $post.find('.likes');
@@ -90,7 +90,7 @@ function create_comment(success_cb, error_cb) {
   
     $.ajax({
       type: "POST",
-      url: '/comment',
+      url: '/comment/',
       data: {
         comment_text: comment_text,
         post_pk: post_pk
@@ -131,7 +131,7 @@ function follow_user(success_cb, error_cb, type) {
   
     $.ajax({
       type: "POST",
-      url: '/togglefollow',
+      url: '/togglefollow/',
       data: {
         follow_user_pk: follow_user_pk,
         type: type
@@ -166,10 +166,10 @@ function update_unfollow_view(data) {
 }
 
 
-// $('.follow-toggle__container').on('click', '.follow-user', function() {
-//     follow_user.call(this, update_follow_view, error_cb, 'follow');
-// });
+$('.follow-toggle__container').on('click', '.follow-user', function() {
+    follow_user.call(this, update_follow_view, error_cb, 'follow');
+});
 
-// $('.follow-toggle__container').on('click', '.unfollow-user', function() {
-//     follow_user.call(this, update_unfollow_view, error_cb, 'unfollow');
-// });
+$('.follow-toggle__container').on('click', '.unfollow-user', function() {
+    follow_user.call(this, update_unfollow_view, error_cb, 'unfollow');
+});

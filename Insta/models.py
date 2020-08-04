@@ -16,7 +16,17 @@ class InstaUser (AbstractUser):
 
     def get_absolute_url(self): #called when new post saved
         return reverse("user_profile", args=[str(self.id)]) #get url based on name
+
+    def get_connections(self):
+        return UserConnection.objects.filter(creator=self)
     
+    def get_followers(self):
+        return UserConnection.objects.filter(following=self)
+
+    def is_followed_by(self, user):
+        followers = UserConnection.objects.filter(following=self)
+        return followers.filter(creator=user).exists()
+
 class Post (models.Model):
     author = models.ForeignKey(
         InstaUser,
@@ -36,6 +46,12 @@ class Post (models.Model):
 
     def get_absolute_url(self): #called when new post saved
         return reverse("post_detail", args=[str(self.id)]) #get url based on name
+
+    def get_like_count(self):
+        return self.likes.count()
+
+    def get_comment_count(self):
+        return self.comments.count()
 
 class UserConnection(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -67,7 +83,7 @@ class Like(models.Model):
         related_name='likes'
     )
 
-    class Mata:
+    class Meta:
         # Use this in a relation model, determine if we need some unique info 
         # Combination post and user should be unique
         unique_together = ("post", "user")
@@ -76,3 +92,11 @@ class Like(models.Model):
     def __str__(self):
         return 'Like: ' + self.user.username + ' likes ' + self.post.title
     
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments',)
+    user = models.ForeignKey(InstaUser, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(auto_now_add=True, editable=False)
+
+    def __str__(self):
+        return self.comment
